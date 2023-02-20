@@ -1,6 +1,10 @@
 pipeline {
     agent { label "linux-agent" }
 
+    // tool {
+    //     "git"
+    // }
+
     // parameters {
     //     string(name: 'NAME', defaultValue: '', description: 'What is your Full Name?')
     //     choice(name: "Branch", choices: "main\ndev", description: "Select Branch")
@@ -11,6 +15,13 @@ pipeline {
     // }
 
     stages{
+
+        stage("Initialize") {
+            steps {
+                echo "BRANCH: ${env.BRANCH_NAME} | TARGET BRANCH: ${env.CHANGE_TARGET}"
+            }
+        }
+        
 
         stage("Build") {
           when {
